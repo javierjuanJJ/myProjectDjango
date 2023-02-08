@@ -1,4 +1,4 @@
-from django.contrib import messages
+from django.contrib import messages, auth
 from django.contrib.auth.models import User
 
 from django.shortcuts import render, redirect
@@ -67,6 +67,25 @@ def register(request):
     context = {}
     return render(request,'register.html',context)
 
+def login(request):
+
+    context = {}
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        password1 = request.POST['password1']
+
+        user = auth.authenticate(username=username,password=password1)
+
+        if user is not None:
+            auth.login(request, user)
+            return redirect('/')
+        else:
+            messages.info(request, 'Credentials invalid')
+            return redirect('login')
+    else:
+        return render(request, 'login.html',context)
+
 
 def counter(request):
     text = request.POST['text']
@@ -76,3 +95,8 @@ def counter(request):
         'amount_of_words': amount_of_words,
     }
     return render(request, 'counter.html', context)
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
