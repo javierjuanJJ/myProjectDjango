@@ -1,12 +1,40 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+
+from myapp.models import Feature
+
+
 # Create your views here.
 
 def index(request):
+    # feature1=Feature()
+    # feature1.id = 0
+    # feature1.name = 'Fast'
+    # feature1.details = 'Our service'
+    # feature1.is_true = True
+    #
+    # feature2 = Feature()
+    # feature2.id = 0
+    # feature2.name = 'Fast'
+    # feature2.details = 'Our service'
+    # feature2.is_true = True
+    #
+    # feature3 = Feature()
+    # feature3.id = 0
+    # feature3.name = 'Fast'
+    # feature3.details = 'Our service'
+    # feature3.is_true = True
+    #
+    # feature4 = Feature()
+    # feature4.id = 0
+    # feature4.name = 'Fast'
+    # feature4.details = 'Our service'
+    # feature4.is_true = True
+    #
+    # features=[feature1,feature2,feature3,feature4]
+    features = Feature.objects.all()
     context = {
-        'name':'jj',
-        'age': 24,
-        'nationality':'spanish',
+        'features': features,
     }
     return render(request, 'index.html', context)
 
