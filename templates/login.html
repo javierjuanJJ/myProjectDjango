@@ -4,7 +4,7 @@
     <h5 style="color: red">{{ message }}</h5>
 {% endfor %}
 
-<form method="post" action="login">
+<form method="post" action=".">
     {% csrf_token %}
     <p>Enter a username:</p>
     <input type="text" name="username">
