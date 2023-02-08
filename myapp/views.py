@@ -51,21 +51,21 @@ def register(request):
         if password1 == password2:
             if User.objects.filter(email=email).exists():
                 messages.info(request,'Email already exists')
-                return redirect('register')
+                return redirect('/register')
 
             elif User.objects.filter(username=username).exists():
                 messages.info(request, 'Username already exists')
-                return redirect('register')
+                return redirect('/register')
             else:
                 user = User.objects.create_user(username=username,email=email,password=password1)
                 user.save()
-                return redirect('login')
+                return redirect('/login')
         else:
             messages.info(request, 'Password not the same')
-            return redirect('register')
-
-    context = {}
-    return render(request,'register.html',context)
+            return redirect('/register')
+    else:
+        context = {}
+        return render(request, 'register.html', context)
 
 def login(request):
 
@@ -82,7 +82,7 @@ def login(request):
             return redirect('/')
         else:
             messages.info(request, 'Credentials invalid')
-            return redirect('login')
+            return redirect('/login')
     else:
         return render(request, 'login.html',context)
 
