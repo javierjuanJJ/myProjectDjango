@@ -15,6 +15,7 @@
     <h1>Input your text:</h1>
     <br>
     <form method="" action="counter.html">
+        {% csrf_token %}
         <label>
             <textarea name="text" rows="25" cols="100"></textarea>
         </label>
