@@ -90,9 +90,11 @@ def login(request):
 def counter(request):
     text = request.POST['text']
     amount_of_words = len(text.split())
+    posts = []
     context = {
         'text' : text,
         'amount_of_words': amount_of_words,
+        'posts' : posts,
     }
     return render(request, 'counter.html', context)
 
@@ -100,3 +102,9 @@ def counter(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+
+def post(request, pk):
+    return render(request, 'post.html', {
+        'pk' : pk
+    })

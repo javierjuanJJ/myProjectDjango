@@ -5,10 +5,17 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>The text is: </h1>
-    <p>
-        {{ text }}
-    </p>
-    <h1>The amount of words are {{ amount_of_words }}</h1>
+<h1>The text is: </h1>
+<p>
+    {{ text }}
+</p>
+<h1>The amount of words are {{ amount_of_words }}</h1>
+{% for post in posts %}
+    <h1>
+        <a href="{% url 'post' post %}">
+            post
+        </a>
+    </h1>
+{% endfor %}
 </body>
 </html>
